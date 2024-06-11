@@ -1,0 +1,159 @@
+
+
+.main-wrapper {
+  background: url('../../assets/background.jpeg') no-repeat center center fixed;
+  background-size: cover;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  color: white;
+}
+
+.main-header {
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent black background */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Shadow effect */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  z-index: 10;
+}
+
+.main-nav {
+  display: flex;
+}
+
+.main-nav .nav-link {
+  margin-right: 20px;
+  text-decoration: none;
+  color: white;
+  transition: color 0.3s ease;
+}
+
+.main-nav .nav-link:hover {
+  color: #007bff;
+}
+
+.branding h1 {
+  font-size: 24px;
+  margin: 0;
+  color: white;
+}
+
+.main-content {
+  padding: 20px;
+}
+
+.hero-section {
+  position: relative;
+  height: 100vh; /* Full viewport height */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.6); /* Semi-transparent overlay */
+}
+
+.hero-text {
+  text-align: center;
+  animation: fadeIn 2s ease-in-out;
+}
+
+.hero-text h2 {
+  font-size: 36px;
+  margin-bottom: 20px;
+  opacity: 0;
+  animation: fadeIn 2s ease-in-out forwards;
+}
+
+.hero-text p {
+  font-size: 18px;
+  margin-bottom: 20px;
+  opacity: 0;
+  animation: fadeIn 2.5s ease-in-out forwards;
+}
+
+.hero-text .btn {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+  opacity: 0;
+  animation: fadeIn 3s ease-in-out forwards;
+}
+
+.about-section {
+  margin-top: 40px;
+  padding: 40px;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.about-text h2,
+.benefits-section h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: white;
+  opacity: 0;
+  animation: fadeIn 1.5s ease-in-out forwards;
+}
+
+.about-text p {
+  font-size: 16px;
+  color: white;
+  opacity: 0;
+  animation: fadeIn 2s ease-in-out forwards;
+}
+
+.benefits-section {
+  margin-top: 40px;
+  padding: 40px;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.benefits-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.benefit-card {
+  background: rgba(255, 255, 255, 0.8);
+  color: #333;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin: 10px;
+  flex: 1 1 calc(33% - 20px);
+  box-sizing: border-box;
+}
+
+.benefit-card h3 {
+  margin-top: 0;
+}
+
+.benefit-card p {
+  margin-bottom: 0;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+
+.fade-in {
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+.fade-in.visible {
+  opacity: 1;
+}
