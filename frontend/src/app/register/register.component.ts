@@ -1,9 +1,7 @@
-// src/app/register/register.component.ts
-
-import { Component } from '@angular/core';
-import { trigger, state, style, animate, transition } from '@angular/animations';
 import { HttpClient } from '@angular/common/http';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { trigger, state, style, animate, transition } from '@angular/animations';
 
 @Component({
   selector: 'app-register',
@@ -12,43 +10,40 @@ import { Router } from '@angular/router';
   animations: [
     trigger('fadeIn', [
       state('void', style({ opacity: 0 })),
-      transition(':enter, :leave', [
-        animate(500)
+      transition(':enter', [
+        animate('1s ease-in-out')
       ])
     ])
   ]
 })
 export class RegisterComponent {
-  firstname: string = " ";
-  lastname: string = " ";
-  email: string = " ";
-  password: string = " ";
-  address: string = " ";
+  name: string = '';
+  email: string = '';
+  password: string = '';
+  errorMessage: string = '';
 
-  constructor(private http: HttpClient, private router: Router) {}
-
-  ngOnInit(): void {
-    // Called after the constructor, initializing input properties, and the first call to ngOnChanges.
-    // Add 'implements OnInit' to the class.
-  }
+  constructor(private router: Router, private http: HttpClient) {}
 
   register() {
-    let data = {
-      "firstname": this.firstname,
-      "lastname": this.lastname,
-      "email": this.email,
-      "password": this.password,
-      "address": this.address
+    console.log(this.name);
+    console.log(this.email);
+    console.log(this.password);
+
+    let bodyData = {
+      name: this.name,
+      email: this.email,
+      password: this.password,
     };
 
-    this.http.post("http://localhost:5000/user/create", data).subscribe((results: any) => {
-      console.log(results);
-      alert("User has been successfully registered");
-      this.router.navigate(['/login']);
-    });
-  }
+    this.http.post("http://localhost:5000/user/register", bodyData).subscribe((resultData: any) => {
+      console.log(resultData);
 
-  save() {
-    this.register();
+      if (resultData.status) {
+        this.router.navigateByUrl('/home');
+      } else {
+        alert("Registration failed");
+        console.log("Error registering");
+      }
+    });
   }
 }
