@@ -20,6 +20,7 @@ export class RegisterComponent {
   name: string = '';
   email: string = '';
   password: string = '';
+  address: string = '';
   errorMessage: string = '';
 
   constructor(private router: Router, private http: HttpClient) {}
@@ -28,11 +29,13 @@ export class RegisterComponent {
     console.log(this.name);
     console.log(this.email);
     console.log(this.password);
+    console.log(this.address);
 
     let bodyData = {
-      name: this.name,
+      fullname: this.name,
       email: this.email,
       password: this.password,
+      address: this.address,
     };
 
     this.http.post("http://localhost:5000/user/register", bodyData).subscribe((resultData: any) => {

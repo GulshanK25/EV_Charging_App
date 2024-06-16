@@ -3,14 +3,11 @@ import mongoose from "mongoose";
 const { Schema, model } = mongoose;
 
 const registrationSchema = new Schema({
-    firstname: {
+    fullname: {
         type: String,
         required: true
     },
-    lastname: {
-        type: String,
-        required: true
-    },
+    
     email: {
         type: String,
         required: true

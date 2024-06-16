@@ -3,7 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-import { MainComponent } from './main/main.component'; // Import the MainComponent
+import { MainComponent } from './main/main.component';
+import { AddcomponentComponent } from './addcomponent/addcomponent.component';
 
 const routes: Routes = [
   {
@@ -22,7 +23,13 @@ const routes: Routes = [
   {
     path: 'register',
     component: RegisterComponent
-  }
+  },
+  {
+    path: 'postadd',
+    component: AddcomponentComponent
+  },
+
+
 ];
 
 @NgModule({

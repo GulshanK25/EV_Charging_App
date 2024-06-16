@@ -1,4 +1,5 @@
-import { createregistrationDBService, loginuserDBService } from './studentservices.js';
+import { createregistrationDBService, loginuserDBService } from './userservices.js';
+
 
 export const createregistrationControllerFn = async (req, res) => {
     try {

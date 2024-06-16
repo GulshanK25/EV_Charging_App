@@ -1,21 +1,20 @@
 import simpleEncryptor from 'simple-encryptor';
-import Registration from './studentmodel.js';
+import Registration from './usermodel.js';
 
 const key = '123456789trytryrtyr';
 const encryptor = simpleEncryptor(key);
 
 export async function createregistrationDBService(registrationDetails) {
     try {
-        const { firstname, lastname, email, password, address } = registrationDetails;
+        const { fullname, email, password, address } = registrationDetails;
 
-        if (!firstname || !lastname || !email || !password || !address) {
+        if (!fullname || !email || !password || !address) {
             throw new Error("Missing required fields");
         }
 
         const encryptedPassword = encryptor.encrypt(password);
         const registrationModelData = new Registration({
-            firstname,
-            lastname,
+            fullname,
             email,
             password: encryptedPassword,
             address
@@ -28,7 +27,6 @@ export async function createregistrationDBService(registrationDetails) {
         return false;
     }
 }
-
 export async function loginuserDBService(registrationDetails) {
     try {
         const result = await Registration.findOne({ email: registrationDetails.email });
