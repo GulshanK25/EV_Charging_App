@@ -1,27 +1,25 @@
+// routes/routes.js
 import express from 'express';
-import {createregistrationControllerFn ,loginUserControllerFn} from '../src/user/usercontroler.js';
-import { createads, getAds } from '../src/ads/adscontroler.js';
 import multer from 'multer';
-
-
+import { createAds, getAds, getAdById } from '../src/ads/adscontroler.js';
+import { createregistrationControllerFn, loginUserControllerFn } from '../src/user/usercontroler.js';
 
 const router = express.Router();
 
-// Configure multer for file uploads
 const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-        cb(null, 'uploads/');
-    },
-    filename: function (req, file, cb) {
-        cb(null, Date.now() + '-' + file.originalname);
-    }
+  destination: function (req, file, cb) {
+    cb(null, 'uploads/');
+  },
+  filename: function (req, file, cb) {
+    cb(null, Date.now() + '-' + file.originalname);
+  }
 });
 const upload = multer({ storage });
 
-// Routes
 router.post('/login', loginUserControllerFn);
 router.post('/register', createregistrationControllerFn);
-router.post('/ads/uploads', upload.single('image'), createads);
+router.post('/ads/uploads', upload.single('image'), createAds);
 router.get('/ads', getAds);
+router.get('/ads/:id', getAdById);
 
 export default router;

@@ -1,20 +1,20 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { UserService } from '../services/user.service';
 
 @Component({
-  selector: 'app-addcomponent',
+  selector: 'app-add-ad',
   templateUrl: './addcomponent.component.html',
-  styleUrl: './addcomponent.component.scss'
+  styleUrls: ['./addcomponent.component.scss']
 })
 export class AddcomponentComponent {
-
   title: string = '';
   description: string = '';
   location: string = '';
   image: File | null = null;
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient, private router: Router, private userService: UserService) {}
 
   onFileChange(event: any) {
     this.image = event.target.files[0];
@@ -26,11 +26,19 @@ export class AddcomponentComponent {
       return;
     }
 
+    const userId = this.userService.getUserId();
+
+    if (!userId) {
+      alert('User not logged in');
+      return;
+    }
+
     const formData = new FormData();
     formData.append('title', this.title);
     formData.append('description', this.description);
     formData.append('location', this.location);
     formData.append('image', this.image);
+    formData.append('postedBy', userId);
 
     this.http.post('http://localhost:5000/user/ads/uploads', formData).subscribe(
       (response: any) => {
@@ -49,5 +57,4 @@ export class AddcomponentComponent {
   backhome() {
     this.router.navigateByUrl('/home');
   }
-
 }

@@ -11,6 +11,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { MainComponent } from './main/main.component';
 import { AddcomponentComponent } from './addcomponent/addcomponent.component';
+import { AdDetailsComponent } from './ad-details/ad-details.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { AddcomponentComponent } from './addcomponent/addcomponent.component';
     HomeComponent,
     MainComponent,
     AddcomponentComponent,
+    AdDetailsComponent,
   ],
   imports: [
     BrowserModule,

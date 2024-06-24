@@ -1,22 +1,20 @@
 <header class="navbar">
   <h1 class="navbar-brand">Electric Car Charging Stations</h1>
+  <p *ngIf="username">Welcome, {{ username }}!</p>
 </header>
 <main>
-  <!-- Main content of the home page -->
   <div class="container">
-      <h2>Welcome to Electric Car Charging Stations</h2>
-      <p>Choose an option below:</p>
-      <button class="btn btn-primary" (click)="showALLAds()">See Ads</button>
-      <button class="btn btn-primary" (click)="post()">Make an Ad</button>
+    <h2>Welcome to Electric Car Charging Stations</h2>
+    <p>Choose an option below:</p>
+    <button class="btn btn-primary" (click)="showAllAds()">See Ads</button>
+    <button class="btn btn-primary" (click)="post()">Make an Ad</button>
   </div>
-
-
-  <div class = "ADScontainer" *ngIf ="showAds">
-    <div *ngFor=" let ad of ads" class = "ad-cards">
+  <div class="ads-container" *ngIf="showAds">
+    <div *ngFor="let ad of ads" class="ad-card">
       <h3>{{ ad.title }}</h3>
-        <p>{{ ad.description }}</p>
-        <p>Location: {{ ad.location }}</p>
-        <button class="btn btn-secondary" (click)="viewAdDetails(ad._id)">View Details</button>
+      <p>{{ ad.description }}</p>
+      <p>Location: {{ ad.location }}</p>
+      <button class="btn btn-secondary" (click)="viewAdDetails(ad._id)">View Details</button>
     </div>
   </div>
 </main>

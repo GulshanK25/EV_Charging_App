@@ -1,5 +1,5 @@
 import { createregistrationDBService, loginuserDBService } from './userservices.js';
-
+import User from './usermodel.js';
 
 export const createregistrationControllerFn = async (req, res) => {
     try {
@@ -23,9 +23,10 @@ export const loginUserControllerFn = async (req, res) => {
         const result = await loginuserDBService(req.body);
 
         if (result.status) {
-            res.send({ status: true, message: result.msg });
+            const user = await User.findOne({ email: req.body.email }); // Assuming User is your Mongoose model
+            res.status(200).json({ status: true, userId: user._id, username: user.name });
         } else {
-            res.send({ status: false, message: result.msg });
+            res.status(401).json({ status: false, message: result.msg });
         }
     } catch (error) {
         console.error(error);
